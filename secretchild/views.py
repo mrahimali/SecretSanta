@@ -6,15 +6,14 @@ from .utils import read_csv, read_previous_assignments, assign_secret_santa, gen
 
 
 class SecretSantaView(View):
-    """Handles Secret Santa file uploads and assignment generation."""
 
     def get(self, request):
-        """Handles GET requests and renders the file upload form."""
+
         form = CSVUploadForm()
         return render(request, 'index.html', {'form': form})
 
     def post(self, request):
-        """Handles POST requests, processes files, and returns the generated CSV."""
+        
         form = CSVUploadForm(request.POST, request.FILES)
         if form.is_valid():
             employees_file = request.FILES['employees_file']
